@@ -11,8 +11,5 @@ import Foundation
 public struct People: Decodable {
     
     var name: String
-    var birth_year: String
-    var films: [String]
-    var gender: String
     
 }

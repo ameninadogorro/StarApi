@@ -12,6 +12,7 @@ public struct People: Decodable {
     
     var name: String
     var birth_year: String
-    var species: [String]
+    var films: [String]
+    var gender: String
     
 }

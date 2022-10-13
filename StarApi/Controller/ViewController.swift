@@ -16,7 +16,7 @@ class ViewController: UIViewController {
             let characters = await API.pegaTodosPeople()
             print(characters.count)
             for character in characters {
-                print("o nome desse personagem é:",character.name, "Faz aniverario em:", character.birth_year, character.films, character.gender)
+                print("o nome desse personagem é:",character.name)
             }
         }
         // Do any additional setup after loading the view.

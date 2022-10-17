@@ -1,9 +1,9 @@
-//
-//  InitialVIew.swift
-//  StarApi
-//
-//  Created by Ana Raiany Guimarães Gomes on 2022-10-13.
-//
+
+  InitialVIew.swift
+  StarApi
+
+  Created by Ana Raiany Guimarães Gomes on 2022-10-13.
+
 
 import Foundation
 import UIKit
@@ -33,12 +33,13 @@ class InitialViewController: UIViewController  {
             
             self.fundoImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             self.fundoImage.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            self.fundoImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 50),
-            self.fundoImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: -50),
+            self.fundoImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            self.fundoImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: -20),
             self.fundoImage.topAnchor.constraint(equalTo: self.view.topAnchor, constant: -80),
             self.fundoImage.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 50)
         ])
     }
+    
     
 }
 

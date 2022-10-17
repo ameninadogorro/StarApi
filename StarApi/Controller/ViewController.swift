@@ -19,7 +19,7 @@ class ViewController: UIViewController {
                 print("o nome desse personagem é:",character.name)
             }
         }
-        // Do any additional setup after loading the view.
+      
     }
 
 

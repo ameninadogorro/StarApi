@@ -39,7 +39,8 @@ class InitialViewController: UIViewController  {
             self.fundoImage.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 50)
         ])
     }
-    
+        
+        
     
 }
 

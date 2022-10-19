@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
 //        tableView.separatorStyle = .none
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)//definindo a TableView
         return tableView
     }()
@@ -35,10 +36,12 @@ class ViewController: UIViewController {
         tableView.backgroundColor = .clear //declaro que o fundo vai ser transparente pra aparacer o background das estrelas
         
         view.addSubview(fundoImage)//fundo estrelas atras
-        view.addSubview(tableView)// tableView na frente do fundo
-        
+        view.addSubview(tableView)// tableView na frente do fund
+        title = "Picture of the Day"
+        navigationController?.navigationBar.prefersLargeTitles = true
         self.configConstraints()
 
+        changeNavigationBarAppearance()
         
         
         Task {
@@ -49,6 +52,18 @@ class ViewController: UIViewController {
             }
         }
       
+    }
+    
+    func changeNavigationBarAppearance() {
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.largeTitleTextAttributes = [.foregroundColor : UIColor.white]
+        
+        navigationItem.compactAppearance = appearance
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        
     }
     
     private func configConstraints() { //Constraints do background
@@ -66,7 +81,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
@@ -75,7 +90,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UITableViewDataSource { //Aqui eu falo pra puxar todos os personagens que eu baixei antes
+extension ViewController: UITableViewDataSource, UITableViewDelegate { //Aqui eu falo pra puxar todos os personagens que eu baixei antes
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,6 +103,15 @@ extension ViewController: UITableViewDataSource { //Aqui eu falo pra puxar todos
         cell.textLabel?.text = character.name
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == characters.count - 1 {
+            characters.append(contentsOf: characters)
+            tableView.reloadData()
+        }
+    }
+    
+
     
 }
 

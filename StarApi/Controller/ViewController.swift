@@ -90,28 +90,4 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate { //Aqui eu falo pra puxar todos os personagens que eu baixei antes
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return characters.count // 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let character = characters[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell
-        cell.textLabel?.text = character.name
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == characters.count - 1 {
-            characters.append(contentsOf: characters)
-            tableView.reloadData()
-        }
-    }
-    
-
-    
-}
 

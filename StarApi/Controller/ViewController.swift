@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         
         view.addSubview(fundoImage)//fundo estrelas atras
         view.addSubview(tableView)// tableView na frente do fund
-        title = "Picture of the Day"
+        title = "Que a força esteja com vc"
         navigationController?.navigationBar.prefersLargeTitles = true
         self.configConstraints()
 
@@ -90,4 +90,34 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController: UITableViewDataSource, UITableViewDelegate { //Aqui eu falo pra puxar todos os personagens que eu baixei antes
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return characters.count // 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let character = characters[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell
+        cell.textLabel?.text = character.name
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == characters.count - 1 {
+            characters.append(contentsOf: characters)
+            tableView.reloadData()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let character = characters[indexPath.row] // character da row
+        let controller = CharacterViewController() // criei a controller
+        controller.character = character // defini o character da controller
+        present(controller, animated: true)
+    }
+
+    
+}
 

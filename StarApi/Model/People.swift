@@ -12,4 +12,5 @@ public struct People: Decodable {
     
     var name: String
     var height: String
+    var mass: String
 }
